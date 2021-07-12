@@ -1,0 +1,59 @@
+here’s what happens when you try to update the DOM in React:
+------------------------------------------------------------
+The entire virtual DOM gets updated.
+The virtual DOM gets compared to what it looked like before you updated it. React figures out which objects have changed.
+The changed objects, and the changed objects only, get updated on the real DOM.
+Changes on the real DOM cause the screen to change
+
+
+Here’s a rule that you need to know: you can not inject an if statement into a JSX expression.
+-------------------------------
+(
+  <h1>
+    {
+      if (purchase.complete) {
+        'Thank you for placing an order!'
+      }
+    }
+  </h1>
+)
+
+
+// map function working example...
+---------------------------------------
+import './App.css';
+
+function App() {
+  const liArray = [
+    <li>item 1</li>, 
+    <li>item 2</li>, 
+    <li>item 3</li>
+  ];
+  
+  const people = ['Rowe', 'Prevost', 'Gare'];
+  return (
+    <div>
+      <div >Hello World</div>
+      <ul>{liArray}</ul>
+      {
+        people.map(p => <li>{p}</li>)
+      }
+    </div>
+  );
+}
+
+export default App;
+
+key as a jsx attribute... example...
+---------------------------------
+const people = ['Rowe', 'Prevost', 'Gare'];
+
+const peopleLis = people.map((person, i) =>
+  // expression goes here:
+  <li key={'person_'+i}>{person}</li>
+);
+
+
+You can see a list of valid event names here:
+-------------------------------------------------
+https://reactjs.org/docs/events.html#supported-events
